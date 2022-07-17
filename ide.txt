@@ -1,1 +1,3 @@
 Make a freedrive program
+
+forside med metrics som viser tcp pos seks stk.
