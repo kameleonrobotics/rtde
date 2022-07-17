@@ -7,6 +7,7 @@ import URBasic
 ROBOT_IP = '192.168.247.128'
 ACCELERATION = 0.9  # Robot acceleration value
 VELOCITY = 0.8  # Robot speed value
+freq = 125  # Hz
 
 # The Joint position the robot starts at
 robot_start_position = (math.radians(-218),
@@ -31,9 +32,14 @@ robot.init_realtime_control()  # starts the realtime control loop on the Univers
 time.sleep(1)  # just a short wait to make sure everything is initialised
 
 try:
-    while True:
+    # while True:
         # robot.set_realtime_pose(next_pose)
-        time.sleep(0.2)
+    time.sleep(1/freq)
+    tcp_pos = robot.get_actual_tcp_pose()
+    print(f"{tcp_pos=}")
+
+    robot.movej([-1.16756324, 0.3570666, 1.08672699, -1.39822642, -0.64988366, 0.70045013])
+    robot.movej([-1.16756324, 1.3570666, 1.08672699, -1.39822642, -0.64988366, 0.70045013])
 
 except KeyboardInterrupt:
     print("closing robot connection")
